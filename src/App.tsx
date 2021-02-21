@@ -1,25 +1,26 @@
 import React, { useState } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text } from 'react-native'
 import styled from 'styled-components/native'
 
-const Container = styled(View)`
+const Container = styled.View`
     display: flex;
     align-items: center;
     justify-content: center;
     flex: 1;
+    background: #fea47f;
 `
-const TextStyled = styled(Text)`
+const TextStyled = styled.Text`
     font-size: 80px;
     color: blue;
 `
-const ButtonView = styled(View)`
+const ButtonView = styled.View`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 12px;
     width: 100%;
 `
-const ButtonStyled = styled(TouchableOpacity)`
+const ButtonStyled = styled.TouchableOpacity`
     background-color: #74b9ff;
     width: 28%;
     border-radius: 12px;
@@ -36,18 +37,18 @@ export default function App() {
             <TextStyled>{counter}</TextStyled>
             <ButtonView>
                 {counter > 0 && (
+                    <ButtonStyled onPress={() => setCounter(counter - 1)}>
+                        <Text>-</Text>
+                    </ButtonStyled>
+                )}
+                {counter > 0 && (
                     <ButtonStyled onPress={() => setCounter(0)}>
                         <Text>Reset</Text>
                     </ButtonStyled>
                 )}
                 <ButtonStyled onPress={() => setCounter(counter + 1)}>
-                    <Text>Increase</Text>
+                    <Text>+</Text>
                 </ButtonStyled>
-                {counter > 0 && (
-                    <ButtonStyled onPress={() => setCounter(counter - 1)}>
-                        <Text>Decrease</Text>
-                    </ButtonStyled>
-                )}
             </ButtonView>
         </Container>
     )
