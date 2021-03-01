@@ -4,8 +4,24 @@
     "prettier",
     "prettier/react"
   ],
+  "settings": {
+    "import/extensions": [".ts", ".tsx"],
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx",".ts", ".tsx", ".native.js"]
+      }
+    }
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "import/named": "off",
+    "import/namespace": "off",
+    "import/default": "off",
     "prettier/prettier": [
       "error",
       {
