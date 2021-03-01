@@ -7,16 +7,7 @@ import { ParamListBase } from '@react-navigation/native'
 import logo from '../assets/images/fitness-loading-spinner.json'
 import { Container } from '../components/Container'
 import { ROUTE_NAMES } from '../assets/constants/routes'
-
-const Button = styled.TouchableOpacity`
-    background-color: #95afc0;
-    width: 25%;
-    height: 12%;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`
+import { Button } from '../components/common/Button'
 
 const Logo = styled.View`
     height: 50%;

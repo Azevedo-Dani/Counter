@@ -9,7 +9,7 @@ const Stack = createStackNavigator()
 
 export const Routes = () => (
     <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name={ROUTE_NAMES.HOME} component={Home} />
             <Stack.Screen name={ROUTE_NAMES.CHRONO} component={Chrono} />
         </Stack.Navigator>
