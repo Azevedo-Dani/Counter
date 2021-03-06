@@ -6,18 +6,15 @@ import { ParamListBase } from '@react-navigation/native'
 import { Container } from '../components/Container'
 import { ROUTE_NAMES } from '../assets/constants/routes'
 import { Button } from '../components/common/Button'
+import { Timer } from '../components/Timer'
+import { TextStyled } from '../components/common/TextStyled'
 
 const ButtonBlock = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    height: 50%;
-`
-
-const TurnNumber = styled.Text`
-    font-size: 80px;
-    font-weight: bold;
+    height: 20%;
 `
 
 export const Chrono = ({
@@ -26,10 +23,12 @@ export const Chrono = ({
     navigation: StackNavigationProp<ParamListBase, 'Home'>
 }) => {
     const [turn, setTurn] = useState(0)
+
     return (
         <Container>
+            <Timer />
             <View>
-                <TurnNumber>{turn}</TurnNumber>
+                <TextStyled>{turn}</TextStyled>
             </View>
             <ButtonBlock>
                 <Button onPress={() => setTurn(turn + 1)}>
