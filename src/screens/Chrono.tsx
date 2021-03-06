@@ -14,7 +14,7 @@ const ButtonBlock = styled.View`
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    height: 20%;
+    height: 10%;
 `
 
 export const Chrono = ({

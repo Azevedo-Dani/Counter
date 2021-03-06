@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
+import { AnimatedCircularProgress } from 'react-native-circular-progress'
 import { TextStyled } from './common/TextStyled'
-import { COLORS } from '../assets/constants/style'
 
 const Time = styled.View`
-    width: 240px;
-    height: 240px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: ${COLORS.PrimaryColor};
-    border-radius: 100px;
 `
 
 export const Timer = () => {
@@ -19,7 +15,12 @@ export const Timer = () => {
 
     useEffect(() => {
         const timerInterval = setInterval((): void => {
-            setTimer((prevTime) => prevTime + 1)
+            setTimer((prevTime) => {
+                if (prevTime === 3599) {
+                    clearInterval(timerInterval)
+                }
+                return prevTime + 1
+            })
         }, 1000)
         return () => {
             // clean interval in unmount the component
@@ -27,13 +28,29 @@ export const Timer = () => {
         }
     }, [])
 
+    const getSeconds = (time: number): number => Math.floor((time % 3600) % 60)
+    const getMinutes = (time: number): number => Math.floor((time % 3600) / 60)
+
     const convertTimeToString = (time: number): string | number => (time < 10 ? `0${time}` : time)
 
+    const convertSecToPercent = (time: number): number => (getSeconds(time) / 60) * 100
+
     return (
-        <Time>
-            <TextStyled>{convertTimeToString(Math.floor((timer % 3600) / 60))}</TextStyled>
-            <TextStyled>:</TextStyled>
-            <TextStyled>{convertTimeToString(Math.floor((timer % 3600) % 60))}</TextStyled>
-        </Time>
+        <AnimatedCircularProgress
+            size={300}
+            width={10}
+            fill={convertSecToPercent(timer)}
+            tintColor="#DAE0F9"
+            backgroundColor="#3d5875"
+            rotation={0}
+        >
+            {() => (
+                <Time>
+                    <TextStyled>{convertTimeToString(getMinutes(timer))}</TextStyled>
+                    <TextStyled>:</TextStyled>
+                    <TextStyled>{convertTimeToString(getSeconds(timer))}</TextStyled>
+                </Time>
+            )}
+        </AnimatedCircularProgress>
     )
 }

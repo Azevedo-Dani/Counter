@@ -1,4 +1,4 @@
 export enum COLORS {
-    Background = '#2c3e50',
-    PrimaryColor = '#95afc0',
+    Background = '#2D2D2D',
+    PrimaryColor = '#DAE0F9',
 }
